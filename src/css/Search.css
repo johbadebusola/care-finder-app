@@ -1,0 +1,84 @@
+.search-box1{
+    margin: 1em;
+    padding-top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.search-box1 > img{
+    height: 150px;
+    margin-bottom: -10px;
+}
+
+.search-box1 > h2{
+    color: var(--blue);
+    font-family: var(--montserrat);
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.search-box1 > p{
+   margin-top: -0.5em;
+   font-size: 1.1em;
+   text-align: center;
+   font-family: var(--montserrat);
+   color: #908c8c;
+}
+
+.input{
+    display: flex;
+    margin: 1em;
+}
+
+
+.input > input{
+    border: 1px solid #e7e3e3;
+    color: #4f4f4f;
+    border-radius: 2px;
+    width: 100%;
+    padding: 1em;
+    font-size: 1rem;
+    font-family: var(--montserrat);
+}
+
+.input > input:hover{
+    border: 1px solid #44a3e6;
+}
+
+.hospitalList{
+    margin: 1.4em;
+}
+
+.hospitalList > p{
+    margin-top: -0.7em;
+    font-family: var(--montserrat);
+    width: 50%;
+}
+
+.hospitalList > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hospitalList > div > h1{
+    font-size: 18px;
+    font-family: var(--montserrat);
+    width: 70%;
+   
+}
+
+.loader{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (min-width:768px){
+    .search-box1 > p{
+        font-size: 1.4em;
+    }
+}

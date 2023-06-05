@@ -1,0 +1,56 @@
+.header-cont {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 2px 1em;
+  border-bottom: 1px solid #f8fbfd;
+  position: fixed;
+  background-color: white;
+  top: 0;
+}
+
+.header-cont > p {
+  font-size: large;
+}
+
+.login-btn {
+  margin-right: 3em;
+}
+
+.header-cont > p span {
+  color: var(--blue);
+  margin-left: -0.2em;
+  font-family: var(--montserrat);
+}
+
+@media (min-width: 1200px) {
+  .login-btn {
+    margin-right: 8em;
+  }
+  .auth-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px;
+}
+}
+
+.loader {
+  margin-top: 9em;
+}
+
+.profile-img > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.auth-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 158px;
+}
