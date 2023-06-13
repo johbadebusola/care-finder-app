@@ -1,7 +1,7 @@
 .header-cont {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
   align-items: center;
   padding: 2px 1em;
   border-bottom: 1px solid #f8fbfd;
@@ -28,13 +28,13 @@
   .login-btn {
     margin-right: 8em;
   }
-  .auth-div{
+  .auth-div {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 220px;
-}
+  }
 }
 
 .loader {
@@ -42,15 +42,106 @@
 }
 
 .profile-img > img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
-.auth-div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 158px;
+.auth-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 158px;
+}
+
+.nav{
+  position: absolute;
+  right: -2em;
+  top: 3em;
+}
+.nav > ul {
+  list-style-type: none;
+  border: 1px solid var(--blue);
+  /* text-align: center; */
+  margin: 0;
+  padding: 0;
+}
+
+.nav > ul > li a {
+  display: block;
+  text-decoration: none;
+  color: var(--blue);
+  border-bottom: 1px solid var(--blue);
+  padding: 10px;
+}
+
+.nav > ul > li a:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.hamburger > .menu1,
+.menu2,
+.menu3 {
+  background-color: rgb(65, 79, 130);
+  margin-bottom: 4px;
+  width: 1.6em;
+  height: 3px;
+  transition: ease-in-out 0.3s;
+}
+
+.hamburger > .menu1-toggle {
+  transform: rotate(45deg) translate(10px, 3px);
+}
+
+.hamburger > .menu2-toggle {
+  opacity: 0;
+}
+
+.hamburger > .menu3-toggle {
+  transform: rotate(-45deg) translate(10px, -4px);
+}
+
+.active {
+  visibility: hidden;
+  transition: ease-in-out;
+}
+
+
+@media (min-width: 1200px) {
+
+  .nav{
+    position: absolute;
+    right: 50em;
+    top: 0.7em;
+  }
+  .nav > ul {
+    width: 100%;
+    float: left;
+    border: none;
+  }
+
+  .nav > ul > li {
+    float: left;
+
+  
+    /* width: 33.3%; */
+  }
+  .nav > ul > li a {
+    border-bottom: none;
+  }
+  .nav > ul > li a:hover {
+    border-bottom: 1px solid var(--blue) !important;
+    background-color: transparent;
+    color: var(--blue);
+  }
+
+  .hamburger{
+    display: none;
+  }
+
+  .active {
+    visibility: visible;
+  }
 }

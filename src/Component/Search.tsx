@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import hospitalLogo from "../images/hospital_icon.svg";
 import "../css/Search.css";
 import Loader from "./loader";
+import { CSVLink, CSVDownload } from "react-csv";
 
 type DataType = {
   address: string | any;
@@ -11,11 +12,22 @@ type DataType = {
   phone: string | null;
 }[];
 
+type DataaType = {
+  name: string;
+  age: number;
+}[];
+
 export const Search = () => {
   const [hospitals, setHospitals] = useState<DataType>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [rerenderedData, setRerenderedDat] = useState<DataType>([]);
   const [error, setError] = useState<string>();
+
+  const dataa: DataaType = [
+    { name: "john", age: 22 },
+    { name: "james", age: 29 },
+  ];
+
   // Fetch Hospital list from Api
   async function fetchData() {
     setIsLoading(true);
@@ -81,12 +93,16 @@ export const Search = () => {
         />
       </div>
 
+      <CSVLink data={hospitals} filename={"HospitalList.csv"}>
+        <button> Export </button>
+      </CSVLink>
+
       {error ? (
         <h2> {error} </h2>
       ) : (
         <div className="product-grid">
           {isLoading ? (
-            <div className="loader" >
+            <div className="loader">
               <Loader />
             </div>
           ) : (
