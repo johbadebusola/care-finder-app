@@ -7,19 +7,17 @@ export const Header = () => {
   const { loginWithRedirect } = useAuth0();
   const { logout, isAuthenticated, user, isLoading } = useAuth0();
   const navigate = useNavigate();
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
   const toggleMenu = () => {
-      setToggle(!toggle)
-  }
+    setToggle(!toggle);
+  };
   return (
     <>
       <div className="header-cont">
         <p>
           Care<span> FINDER</span>
         </p>
-
-
 
         <div className={`nav ${toggle ? " " : "active"}`}>
           <ul>
@@ -76,11 +74,11 @@ export const Header = () => {
           )}
         </div>
 
-        <div className='hamburger' onClick={toggleMenu} >
-                    <div className={` menu1 ${toggle ? " menu1-toggle" : ""}`} > </div>
-                    <div className={` menu2 ${toggle ? " menu2-toggle" : ""}`} > </div>
-                    <div className={` menu3 ${toggle ? " menu3-toggle" : ""}`} > </div>
-                </div>
+        <div className="hamburger" onClick={toggleMenu}>
+          <div className={` menu1 ${toggle ? " menu1-toggle" : ""}`}> </div>
+          <div className={` menu2 ${toggle ? " menu2-toggle" : ""}`}> </div>
+          <div className={` menu3 ${toggle ? " menu3-toggle" : ""}`}> </div>
+        </div>
       </div>
     </>
   );

@@ -1,31 +1,222 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap");
 
 :root {
-    --Open-sans: "Open Sans", sans-serif;
-    --Raleway: "Raleway", sans-serif;
-  }
+  --Open-sans: "Open Sans", sans-serif;
+  --Raleway: "Raleway", sans-serif;
+}
 .Home-cont {
   margin-top: 4.1em;
   width: 100%;
   background: linear-gradient(90deg, white 10%, var(--blue) 100%);
+  padding: 0;
+  padding-top: 1em;
+  background-color: thistle;
+}
+
+.Home-cont > .box1 > .grid1 > h2 {
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  font-family: var(--Raleway);
+  font-size: 1.9em;
+  color: #08299b;
+}
+
+.Home-cont > .box1 > .grid1 > button {
+  background-color: var(--blue);
+  font-family: var(--Open-sans);
+  display: block;
+  margin: auto;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.Home-cont > .box1 > .grid1 > button:hover {
+  background-color: rgb(75, 155, 207);
+}
+
+.Home-cont > .box1 > .grid1 > p {
+  font-weight: 500;
+  font-size: 1em;
+  text-align: center;
+  font-family: var(--Open-sans);
+}
+
+.Home-cont > .box1 > .img {
+  padding: 1em;
+}
+.Home-cont > .box1 > .img > img {
+  width: 100%;
+}
+
+.Home-cont > .box2 > .grid2 > h3 {
+  text-align: center;
+  font-family: var(--Raleway);
+  font-size: 1.9em;
+}
+
+.Home-cont > .box2 {
   padding: 1em;
 }
 
-.Home-cont > .box1 > h2{
-    font-weight: 700;
-    line-height: 1.4;
-    text-align: center;
-    font-family: var(--Raleway);
-    font-size: 1.9em;
+.Home-cont > .box2 > .grid2 > h3 > span {
+  color: #08299b;
 }
 
-.Home-cont > .box1 > p{
-    font-weight: 500;
-    font-size:1em;
-    text-align: center;
-    font-family: var(--Open-sans);
+.Home-cont > .box2 > .grid2 > p {
+  font-weight: 500;
+  font-size: 1em;
+  text-align: center;
+  font-family: var(--Open-sans);
 }
 
-.Home-cont > .box1 > .img > img {
-  width: 100%;
+.Home-cont > .box2 > .grid2 > button {
+  background-color: var(--blue);
+  font-family: var(--Open-sans);
+  display: block;
+  margin: auto;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.Home-cont > .box2 > .grid2 > button:hover {
+  background-color: rgb(75, 155, 207);
+}
+
+.Home-cont > .box2 > .img1 > img {
+  height: 50vh;
+  margin: auto;
+  display: block;
+  margin-bottom: 1em;
+}
+
+.Home-cont > .box2 > .img2 > img {
+  height: 50vh;
+  margin: auto;
+  display: block;
+}
+
+.Home-cont > .box3 > .grid1 > h3, .Home-cont > .box3 > .grid2 > h3, .Home-cont > .box3 > .grid3 > h3 {
+  margin-bottom: -0.5em;
+  font-size: 15px;
+}
+
+.Home-cont > .box3 > .grid1 > p, .Home-cont > .box3 > .grid2 > p,.Home-cont > .box3 > .grid3 > p {
+
+  font-size: 14px;
+}
+
+.Home-cont > .box3 > .grid1  {
+  background-color: aqua;
+  background: #e0e4ec;
+  border-radius: 12px;
+  text-align: center;
+  padding: 0.5em;
+  width: 250px;
+  height: 160px;
+  margin: auto;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Home-cont > .box3 > .grid2  {
+  background-color: aqua;
+  background: #e0e4ec;
+  border-radius: 12px;
+  text-align: center;
+  padding: 0.5em;
+  width: 250px;
+  height: 160px;
+  margin: auto;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Home-cont > .box3 > .grid3  {
+  background-color: aqua;
+  background: #e0e4ec;
+  border-radius: 12px;
+  text-align: center;
+  padding: 0.5em;
+  width: 250px;
+  height: 160px;
+  margin: auto;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.svg{
+  background-color: var(--blue);
+  width: 70px;
+  height:70px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto; 
+}
+
+.Home-cont > .box2 {
+  margin-bottom: 2em ;
+}
+
+/* .Home-cont > .box3 {
+
+} */
+
+
+@media (min-width: 1000px) {
+  .Home-cont > .box1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .Home-cont > .box1 > .grid1 > h2 {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 1em;
+    color: #08299b;
+  }
+  .Home-cont > .box1 > .grid1 > p {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 1em;
+  }
+  .Home-cont > .box1 > .img {
+    margin-right: -0.5em;
+  }
+
+  .Home-cont > .box2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+  }
+
+  .Home-cont > .box2 > .img2 > img {
+    margin-left: -3em;
+    margin-top: 3em;
+  }
+
+  .Home-cont > .box2 > .grid2 {
+    margin-left: -9em;
+  }
+
+  .Home-cont > .box3{
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+  }
 }

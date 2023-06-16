@@ -1,12 +1,12 @@
 .header-cont {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   align-items: center;
   padding: 2px 1em;
   border-bottom: 1px solid #f8fbfd;
-  position: fixed;
   background-color: white;
+  position: fixed;
   top: 0;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .login-btn {
-  margin-right: 3em;
+  /* margin-right: 2; */
 }
 
 .header-cont > p span {
@@ -57,8 +57,8 @@
 
 .nav{
   position: absolute;
-  right: 0em;
-  top: 3.5em;
+  right: 3em;
+  top: 4.1em;
 }
 .nav > ul {
   list-style-type: none;
@@ -81,6 +81,10 @@
   color: white;
 }
 
+
+.hamburger{
+  margin-right: 2em;
+}
 .hamburger > .menu1,
 .menu2,
 .menu3 {
