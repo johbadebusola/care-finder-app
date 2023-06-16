@@ -54,7 +54,7 @@ export const Header = () => {
             <button
               className="login-btn"
               onClick={() => {
-                loginWithRedirect();
+               navigate("/login")
               }}
             >
               {" "}

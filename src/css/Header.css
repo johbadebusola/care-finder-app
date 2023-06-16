@@ -14,9 +14,7 @@
   font-size: large;
 }
 
-.login-btn {
-  /* margin-right: 2; */
-}
+
 
 .header-cont > p span {
   color: var(--blue);
@@ -26,7 +24,7 @@
 
 @media (min-width: 1200px) {
   .login-btn {
-    margin-right: 8em;
+    margin-right: 20em;
   }
   .auth-div {
     display: flex;
@@ -34,6 +32,9 @@
     align-items: center;
     justify-content: space-between;
     width: 220px;
+  }
+  .profile-img{
+    margin-left: -6em;
   }
 }
 

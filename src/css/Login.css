@@ -1,0 +1,64 @@
+.login {
+  margin-top: 4.1em;
+  background-color: gainsboro;
+  padding: 1px;
+  height: 100vh;
+}
+
+.login > .box1 {
+  /* background-color:tomato; */
+  width: 75%;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 1em;
+  margin-top: 9em;
+  justify-content: center;
+  border: 2px solid var(--blue);
+}
+
+.login > .box1 > input {
+  width: calc(100% - 8%);
+  padding: 10px;
+  margin-bottom: 1em;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.login > .box1 > input:hover {
+  border: 2px solid var(--blue);
+}
+
+.login > .box1 > button {
+  margin: auto;
+  display: block;
+  width: 50%;
+  padding: 8px;
+  font-weight: 600;
+}
+
+.login > .box1 > button:hover {
+  background-color: var(--blue);
+  color: white;
+}
+
+.login > .box1 > h1 {
+  margin: auto;
+  text-align: center;
+  font-family: var(--Railway);
+  color: var(--blue);
+  margin-bottom: 0.5em;
+}
+
+.login > .box1 > .p1 {
+  text-align: center;
+  font-family: var(--Open-san);
+}
+
+.login > .box1 > .p2 {
+  text-align: center;
+}
+
+.login > .box1 > .p2 > span {
+  color: var(--blue);
+  text-decoration: underline;
+}

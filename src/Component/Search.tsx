@@ -3,6 +3,8 @@ import hospitalLogo from "../images/hospital_icon.svg";
 import "../css/Search.css";
 import Loader from "./loader";
 import { CSVLink, CSVDownload } from "react-csv";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 type DataType = {
   address: string | any;
@@ -12,69 +14,58 @@ type DataType = {
   phone: string | null;
 }[];
 
-type DataaType = {
-  name: string;
-  age: number;
-}[];
-
 export const Search = () => {
   const [hospitals, setHospitals] = useState<DataType>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [rerenderedData, setRerenderedDat] = useState<DataType>([]);
+  const [rerenderedData, setRerenderedDat] = useState<any>([]);
   const [error, setError] = useState<string>();
+  const [hospitalData, setHospitalData] = useState<any>([]);
 
-  const dataa: DataaType = [
-    { name: "john", age: 22 },
-    { name: "james", age: 29 },
-  ];
-
-  // Fetch Hospital list from Api
-  async function fetchData() {
+  const getHospitals = () => {
     setIsLoading(true);
-    const response = await fetch(
-      "https://hospital-nigeria-api.hasura.app/api/rest/hospital"
-    );
-    const result = await response.json();
-    setIsLoading(false);
-    return result;
-  }
+    const hospital = collection(db, "hospitalList");
+    getDocs(hospital)
+      .then((response) => {
+        setIsLoading(false);
+        const hosp = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+
+
+        const data = hosp.sort((a: any, b: any) => {
+                if (a.data.city < b.data.city) {
+                  return -1;
+                }
+                if (a.data.city < b.data.city) {
+                  return 1;
+                }
+                return 0;
+              });
+
+        setHospitalData(data);
+        setRerenderedDat(data)
+        
+      })
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData()
-      .then((result) => {
-        // console.log(result.hospitalList);
-        setIsLoading(false);
-        const data = result.hospitalList.sort((a: any, b: any) => {
-          if (a.city < b.city) {
-            return -1;
-          }
-          if (a.city < b.city) {
-            return 1;
-          }
-
-          return 0;
-        });
-
-        setHospitals(data);
-        setRerenderedDat(data);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.log(error.message);
-        setError("No internet Connection");
-      });
+    getHospitals();
   }, []);
+
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterHospitalData = rerenderedData.filter(
-      (item) =>
-        item.city.toLowerCase().includes(event.target.value.toLowerCase()) ||
-        item.name.toLowerCase().includes(event.target.value.toLowerCase())
+      (item:any) =>
+        item.data.city.toLowerCase().includes(event.target.value.toLowerCase()) ||
+        item.data.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
 
     console.log(filterHospitalData);
-    setHospitals(filterHospitalData);
+    setHospitalData(filterHospitalData);
   };
 
   return (
@@ -108,20 +99,20 @@ export const Search = () => {
           ) : (
             <div>
               {
-                hospitals.length === 0 ? (
+                hospitalData.length === 0 ? (
                   <h1 className="no-products-found">
                     {" "}
                     No products are found!{" "}
                   </h1>
                 ) : (
                   <>
-                    {hospitals.map((item) => (
+                    {hospitalData.map((item: any) => (
                       <div key={item.id} className="hospitalList">
                         <div>
-                          <h1> {item.name}</h1>
-                          <p> {item.city.toUpperCase()} </p>
+                          <h1> {item.data?.name}</h1>
+                          <p> {item.data.city.toUpperCase()} </p>
                         </div>
-                        <p> {item.address} </p>
+                        <p> {item.data.address} </p>
                       </div>
                     ))}
                   </>

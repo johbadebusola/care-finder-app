@@ -3,6 +3,8 @@ import { Route,Routes } from 'react-router'
 import { Search } from './Search'
 import Users from './User'
 import Home from './Home'
+import { Login } from './Login'
+import { Signup } from './Signup'
 
 
 export const Router = () => {
@@ -12,6 +14,8 @@ export const Router = () => {
             <Route path='/' element={<Home />}  />
             <Route path='/search'  element={<Search />} /> 
             <Route path='/users'  element={<Users />} /> 
+            <Route path='/login'  element={<Login/>} /> 
+            <Route path='/signup'  element={<Signup/>} /> 
         </Routes>
     </div>
   )

@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Home.css";
 import image1 from "../images/image1.svg";
 import image2 from "../images/image2.svg";
 import image3 from "../images/image3.svg";
 import exports from "../images/export.svg";
 import share from "../images/share.svg";
-import search from "../images/search.svg"
+import search from "../images/search.svg";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
+
 const Home = () => {
+  const [hospitalData, setHospitalData] = useState<any | null>(null);
+
+  const getHospitals = () => {
+    const hospital = collection(db, "hospitalList");
+    getDocs(hospital)
+      .then((response) => {
+        const hosp = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+        setHospitalData(hosp);
+        console.log(hosp);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getHospitals();
+  }, []);
+
+  console.log(hospitalData);
   return (
     <div className="Home-cont">
       <div className="box1">
@@ -48,29 +72,27 @@ const Home = () => {
 
       <div className="box3">
         <div className="grid1">
-        <div className="svg">
-            <img src={search} alt="seaerrch"  />
+          <div className="svg">
+            <img src={search} alt="seaerrch" />
           </div>
           <h3>Search Hospitals</h3>
           <p> Effortless Find the Best Doctors Near you </p>
         </div>
         <div className="grid2">
-        <div className="svg">
-            <img src={share} alt="share"  />
+          <div className="svg">
+            <img src={share} alt="share" />
           </div>
           <h3>Share Hospitals</h3>
           <p>Share the list of hospitals with others</p>
         </div>
         <div className="grid3">
-        <div className="svg">
-            <img src={exports} alt="exports"  />
+          <div className="svg">
+            <img src={exports} alt="exports" />
           </div>
           <h3> Export Hospitals </h3>
           <p>Save list of hospitals</p>
         </div>
       </div>
-
-    
     </div>
   );
 };
