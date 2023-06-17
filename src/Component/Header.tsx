@@ -1,17 +1,44 @@
+import { getAuth,signOut } from "firebase/auth";
 import "../css/Header.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { app } from "../firebase";
+
+
+
 export const Header = () => {
-  const { loginWithRedirect } = useAuth0();
-  const { logout, isAuthenticated, user, isLoading } = useAuth0();
+
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
-
+  const [loggedin, setLoggedin] = useState<boolean>(false);
+  const auth = getAuth(app);
   const toggleMenu = () => {
     setToggle(!toggle);
   };
+
+  const logOut = () => {
+    signOut(auth).then(() => {
+      console.log("signedout")
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+
+  useEffect(() => {
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setLoggedin(true);
+        console.log(user)
+      } else {
+        setLoggedin(false);
+      }
+    });
+  },[])
+
+
+  console.log(loggedin)
   return (
     <>
       <div className="header-cont">
@@ -29,49 +56,25 @@ export const Header = () => {
               {" "}
               <Link to="/search"> HospitalList</Link>{" "}
             </li>
-            {isAuthenticated && (
-              <li>
-                {" "}
-                <Link to="users"> Profile </Link>{" "}
-              </li>
-            )}
           </ul>
         </div>
 
         <div className="auth-div">
-          <div>
-            {isLoading ? (
-              <div> </div>
-            ) : (
-              isAuthenticated && (
-                <div className="profile-img">
-                  <img src={user?.picture} alt={user?.name} />
-                </div>
-              )
-            )}
-          </div>
-          {!isAuthenticated && (
-            <button
-              className="login-btn"
-              onClick={() => {
-               navigate("/login")
-              }}
-            >
-              {" "}
-              Login{" "}
-            </button>
+        { !loggedin ? (
+            <div>
+              <button
+                className="login-btn"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >Log in</button>
+            </div>
+          ) : (
+            <div>
+              <button className="login-btn" onClick={logOut}> Log out</button>
+            </div>
           )}
-          {isAuthenticated && (
-            <button
-              className="login-btn"
-              onClick={() => {
-                logout({ logoutParams: { returnTo: window.location.origin } });
-              }}
-            >
-              {" "}
-              Logout
-            </button>
-          )}
+
         </div>
 
         <div className="hamburger" onClick={toggleMenu}>

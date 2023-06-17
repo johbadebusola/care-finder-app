@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap");
 .login {
   margin-top: 4.1em;
   background-color: gainsboro;
@@ -34,6 +35,7 @@
   width: 50%;
   padding: 8px;
   font-weight: 600;
+  font-family: var(--Open-san);
 }
 
 .login > .box1 > button:hover {
@@ -44,7 +46,7 @@
 .login > .box1 > h1 {
   margin: auto;
   text-align: center;
-  font-family: var(--Railway);
+  font-family: var(--Raleway);
   color: var(--blue);
   margin-bottom: 0.5em;
 }
@@ -56,9 +58,21 @@
 
 .login > .box1 > .p2 {
   text-align: center;
+  font-family: var(--Open-san);
 }
 
 .login > .box1 > .p2 > span {
   color: var(--blue);
   text-decoration: underline;
+  font-family: var(--Open-san);
+  font-weight: bold;
 }
+
+.error{
+    color: tomato;
+    text-align: center;
+    font-family: var(--Railway);
+    font-weight: bold;
+}
+
+/* https://softauthor.com/firebase-cloud-firestore-security-rules/#for-authenticated-users-only */
