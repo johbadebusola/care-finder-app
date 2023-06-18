@@ -2,6 +2,14 @@ import React from 'react'
 
 export const Account = () => {
   return (
-    <div>Account</div>
+
+    <>
+    <div className='profile-cont'>
+      Account
+      
+      </div>
+    
+    </>
+    
   )
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { app } from "../../firebase";
 import { Header2 } from "./Header2";
 import { Router2 } from "./Router2";
+import { Account } from "./Account";
 // type userData = {
 //   displayName:string|null,
 //   photoURL:string | null
@@ -28,16 +29,20 @@ export const Profile = () => {
   console.log(user);
   return (
     <>
-      <div>
+   
+    <div className="profile-grid" >
+    <Header2 />
+    <Router2 />
+    </div>
+      {/* <div>
         {user?.map((item: any) => (
           <div key={item.uid}>
             <p> {item.displayName}</p>
             <p> {item.email} </p>
           </div>
         ))}
-      </div>
-      <Header2 />
-      <Router2 />
+      </div> */}
+      
     </>
   );
 };

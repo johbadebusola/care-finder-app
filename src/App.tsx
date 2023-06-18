@@ -6,6 +6,8 @@ import { Router } from "./Component/Router";
 import { getAuth } from "firebase/auth";
 import { app } from "./firebase";
 import { Profile } from "./Component/LoggedInUser/Profile";
+import { Account } from "./Component/LoggedInUser/Account";
+import { Router2 } from "./Component/LoggedInUser/Router2";
 
 function App() {
   const [loggedin, setLoggedin] = useState<boolean>(false);
@@ -22,7 +24,12 @@ function App() {
   return (
     <div className="App">
        
-      {loggedin ? <Profile /> : (
+      {loggedin ? (
+      <div>
+   <Profile />
+  
+      </div>
+   ) : (
         <div>
            <Header />
            <Router />

@@ -1,13 +1,12 @@
 import { getAuth, signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { app } from "../../firebase";
-
+import "../../css/Header2.css"
 export const Header2 = () => {
   const [toggle, setToggle] = useState(false);
-  const [loggedin, setLoggedin] = useState<boolean>(false);
   const auth = getAuth(app);
-
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setToggle(!toggle);
@@ -17,6 +16,7 @@ export const Header2 = () => {
     signOut(auth)
       .then(() => {
         console.log("signedout");
+        navigate("/");
       })
       .catch((error) => {
         // An error happened.
@@ -25,17 +25,17 @@ export const Header2 = () => {
 
   return (
     <div>
-      <div className="header-cont">
+      <div className="header-cont header2-cont">
         <p>
           Care<span> FINDER</span>
         </p>
 
-        <button className="login-btn" onClick={logOut}>
+        <button className="login-btn  profile-login" onClick={logOut}>
           {" "}
           Log out
         </button>
 
-        <div className={`nav ${toggle ? " " : "active"}`}>
+        <div className={`nav navigation ${toggle ? " " : "active"}`}>
           <ul>
             <li>
               {" "}

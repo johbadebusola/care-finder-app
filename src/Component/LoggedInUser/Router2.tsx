@@ -8,7 +8,7 @@ export const Router2 = () => {
   return (
     <div>
        <Routes>
-            <Route path='/' element={<Account />}  />
+            <Route path='/*' element={<Account />}  />
             <Route path='/search'  element={<Search />} /> 
             <Route path='/library'  element={<Library />} /> 
         </Routes>

@@ -63,8 +63,6 @@ export const Search = () => {
         item.data.city.toLowerCase().includes(event.target.value.toLowerCase()) ||
         item.data.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
-
-    console.log(filterHospitalData);
     setHospitalData(filterHospitalData);
   };
 
