@@ -1,13 +1,18 @@
-
-.profile-cont{
-    margin-top: 4.1em;
-}
-
-.header2-cont{
-    height: 90vh;
-    /* background-color: teal; */
+.header2-cont {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 2px 1em;
+  border-bottom: 1px solid #f8fbfd;
+  background-color: white;
+  position: fixed;
+  top: 0;
 }
 @media (min-width: 800px) {
+  .header2-cont {
+    height: 90vh;
+  }
   .profile-grid {
     display: grid;
     grid-template-columns: 0.1fr 2fr;
@@ -18,24 +23,23 @@
   .header2-cont {
     position: sticky;
     flex-direction: column;
-  border-right: 2px solid var(--blue);
-  justify-content:start
+    border-right: 2px solid var(--blue);
+    justify-content: start;
   }
   .navigation {
     position: static;
     margin-top: 4em;
   }
-  
+
   .profile-cont {
     height: 80vh;
   }
-  
+
   .profile-login {
     margin-right: 0;
   }
-  
-.profile-cont{
-    margin-top: 0em;
-}
 
+  .profile-cont {
+    margin-top: 0em;
+  }
 }

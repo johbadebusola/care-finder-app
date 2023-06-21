@@ -25,7 +25,7 @@ export const Header2 = () => {
 
   return (
     <div>
-      <div className="header-cont header2-cont">
+      <div className=" header2-cont">
         <p>
           Care<span> FINDER</span>
         </p>

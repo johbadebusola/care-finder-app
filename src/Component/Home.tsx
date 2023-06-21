@@ -21,7 +21,7 @@ const Home = () => {
           id: doc.id,
         }));
         setHospitalData(hosp);
-        console.log(hosp);
+      
       })
       .catch((error) => console.log(error));
   };

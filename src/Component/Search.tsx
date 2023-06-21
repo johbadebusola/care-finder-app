@@ -32,20 +32,18 @@ export const Search = () => {
           id: doc.id,
         }));
 
-
         const data = hosp.sort((a: any, b: any) => {
-                if (a.data.city < b.data.city) {
-                  return -1;
-                }
-                if (a.data.city < b.data.city) {
-                  return 1;
-                }
-                return 0;
-              });
+          if (a.data.city < b.data.city) {
+            return -1;
+          }
+          if (a.data.city > b.data.city) {
+            return 1;
+          }
+          return 0;
+        });
 
         setHospitalData(data);
-        setRerenderedDat(data)
-        
+        setRerenderedDat(data);
       })
       .catch((error) => console.log(error));
   };
@@ -55,12 +53,12 @@ export const Search = () => {
     getHospitals();
   }, []);
 
-
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filterHospitalData = rerenderedData.filter(
-      (item:any) =>
-        item.data.city.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      (item: any) =>
+        item.data.city
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase()) ||
         item.data.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
     setHospitalData(filterHospitalData);

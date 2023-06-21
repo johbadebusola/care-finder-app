@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto+Slab&display=swap");
+.library-cont{
+    margin-top: 4.1em;
+    padding: 2em;
+}
+
+.library-grid{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    font-family: "Carter One", cursive;
+    align-items: center;
+}

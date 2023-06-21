@@ -1,9 +1,9 @@
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { app } from "../../firebase";
 import { Header2 } from "./Header2";
 import { Router2 } from "./Router2";
-import { Account } from "./Account";
+
 // type userData = {
 //   displayName:string|null,
 //   photoURL:string | null
@@ -42,6 +42,8 @@ export const Profile = () => {
           </div>
         ))}
       </div> */}
+
+      
       
     </>
   );

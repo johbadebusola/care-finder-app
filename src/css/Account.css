@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto+Slab&display=swap");
+
+.profile-cont {
+  margin-top: 4.1em;
+  height: 90vh;
+  padding: 2em;
+}
+
+.error2 {
+  color: tomato;
+  font-family: "Carter One", cursive;
+}
+
+.success {
+  color: rgb(9, 164, 9);
+  font-family: "Carter One", cursive;
+}
+
+.Account-info > .grid > .form > input {
+  border: 1px solid black;
+  width: 70%;
+  padding: 6px;
+  border-radius: 7px;
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+}
+
+.Account-info > .grid > .form > label {
+  font-family: "Roboto Slab", serif;
+  font-weight: bold;
+}
+
+.Account-info > .grid > .form > button {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-left: 1em;
+  font-family: "Roboto Slab", serif;
+}
+
+.Account-info > .grid > .form > button:hover {
+  background-color: var(--blue);
+  color: white;
+  font-weight: bold;
+}
+
+.Account-info > .grid > p {
+  font-family: "Roboto Slab", serif;
+}
+
+.Account-info > h1 {
+  font-family: "Carter One", cursive;
+  font-size: 1.3rem;
+}
+
+.Account-info > h4 {
+  font-family: "Carter One", cursive;
+  font-size: 1rem;
+}
+
+.Account-info {
+  margin-top: 8em;
+}
+
+.avatar{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+@media (min-width: 800px) {
+  .profile-cont {
+    margin-top: 0em;
+    height: 82vh;
+  }
+  .Account-info > .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .Account-info > .grid > p {
+    margin-left: 6em;
+  }
+  .Account-info {
+    margin-top: 0em;
+  }
+}
+
+
+
+
+
