@@ -7,6 +7,9 @@ import { getAuth } from "firebase/auth";
 import { app } from "./firebase";
 import { Profile } from "./Component/LoggedInUser/Profile";
 
+
+
+
 function App() {
   const [loggedin, setLoggedin] = useState<boolean>(false);
   const auth = getAuth(app);

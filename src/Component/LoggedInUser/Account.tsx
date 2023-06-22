@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../../css/Account.css";
 import { getAuth, updateProfile, verifyBeforeUpdateEmail } from "firebase/auth";
 import { app, storage } from "../../firebase";
-import { getDownloadURL, ref, uploadBytes, listAll } from "firebase/storage";
-// import ghost from "../../images/Ghost Recon.jpg"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+
 
 export const Account = () => {
   const [updateEmail, setUpdateEmail] = useState<any>();
@@ -15,8 +15,6 @@ export const Account = () => {
   const [user, setUser] = useState<any>([]);
   const auth = getAuth(app);
   const [url, setUrl] = useState<any>();
-  const [allImage,setAllImage] = useState<[] | null>([])
-  const imageList = ref(storage, "Avatar-image/");
   const updateMail = () => {
     const users: any = auth.currentUser;
 
@@ -58,15 +56,10 @@ export const Account = () => {
       });
   };
 
-  // photoURL: "https://example.com/jane-q-user/profile.jpg
 
   const handleImageChange = (e: any) => {
     setUpdateImage(e.target.files[0]);
 
-    // if (e.target.files[0]) {
-
-    //   console.log(e.target.files[0]);
-    // }
     if (!e.target.files[0]) {
       setError("Please select a file");
     }
@@ -81,65 +74,42 @@ export const Account = () => {
       .then(() => {
         console.log("uploadSuccessful");
         getDownloadURL(imageRefs)
-        .then((url) =>{
-          updateProfile(user, { photoURL: url })
-          .then(() => {
-            console.log("Photo updated");
-            setRerender(!rerender)
+          .then((url) => {
+            updateProfile(user, { photoURL: url })
+              .then(() => {
+                console.log("Photo updated");
+                setRerender(!rerender);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+            setUrl(url);
           })
           .catch((error) => {
             console.log(error);
           });
-            setUrl(url)
-        })
-        .catch((error) =>{
-            console.log(error)
-        })
-         
-         
-       
       })
       .catch((error) => {
         console.log(error);
       });
-
-   
   };
 
   console.log(url);
-
- 
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        console.log(user)
+       
       } else {
         setUser(null);
       }
     });
 
-    // listAll(imageList).then((response) => {
-    
- 
-    //   response.items.forEach(item => {
-    //     getDownloadURL(item)
-    //     .then((url) => {
-    //       setAllImage( prev => [...prev, url])
-    //     })
-    //   })  
-
-      
-    // }
-    
-
-
-
     // )
-  }, [rerender])
+  }, [rerender]);
 
-  // console.log(updateFullname?.length)
+
 
   return (
     <>

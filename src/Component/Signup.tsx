@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { app } from "../firebase";
+import { app, db } from "../firebase";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 export const Signup = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export const Signup = () => {
   const [fname, setFname] = useState<string>();
   const [lname, setlName] = useState<string>();
   const fullName = fname + " " + lname;
+
   const submit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setLoading(true);
@@ -29,17 +31,21 @@ export const Signup = () => {
       );
       // Signed in
       setLoading(false);
-      const user = userCredential.user;
-      //   const createdUser = auth.currentUser
-      console.log(auth.currentUser);
+     
+      const user:any = userCredential.user;
       updateProfile(user, {
         displayName: fullName,
       }).then(() => {
         setLoading(false);
         console.log("displayNname updated");
-        navigate("/login");
+       
+        addDoc(collection(db, "userSavedData"), {
+          userId:user.uid,
+         hospitalData:[]
+     })
+
       });
-      console.log(user);
+     
     } catch (error: any) {
       setLoading(false);
       const errorCode = error.code;
@@ -58,8 +64,20 @@ export const Signup = () => {
       if (errorCode === "auth/missing-password") {
         setError("Input Password");
       }
+
+      
+      if (errorCode === "auth/email-already-in-use") {
+        setError("User already exist");
+      }
+
+      
+     
+     
     }
+   
   };
+
+ 
   return (
     <>
       <div className="login">

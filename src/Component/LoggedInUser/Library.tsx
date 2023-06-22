@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import "../../css/Library.css";
 import { app, db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+  addDoc,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import Item from "antd/es/list/Item";
-
 export const Library = () => {
   const [allData, setAllData] = useState<any>();
   const [user, setUser] = useState<any>();
-  const [filteredData, setFilteredData] = useState();
+
   const auth = getAuth(app);
   const getUserSavedList = () => {
     const StoredHospitalList = collection(db, "userSavedData");
@@ -32,21 +37,17 @@ export const Library = () => {
         setUser(null);
       }
     });
-
-   
   }, []);
-
 
   const filtered = allData?.filter(
     (items: any) => items.data.userId === user?.uid
   );
 
-
-  console.log(allData)
   if (filtered) {
-    console.log(filtered[0]?.data.hospitalData);
+    console.log(filtered[0]?.id);
   }
 
+ 
   return (
     <div className="library-cont">
       <h1> Library</h1>
@@ -54,18 +55,18 @@ export const Library = () => {
       <div>
         {filtered ? (
           <>
-            
             <div>
-          {  filtered[0]?.data.hospitalData.map((item:any) => (
-            <div className="library-grid"  key={item.id}> 
-              <p> {item.name}</p>
-              <p> {item.address} </p>
-              <button> Del </button>
-            </div>
-          )
-          
-          
-          )}
+              {filtered[0]?.data.hospitalData.map((item: any) => (
+                <div className="library-grid" key={item.id}>
+                  <div>
+                  <h4> {item.address} </h4>
+                  <p> {item.name}</p>
+               
+                    </div>
+                  
+                  <button> Del </button>
+                </div>
+              ))}
             </div>
           </>
         ) : (

@@ -1,13 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto+Slab&display=swap");
 .library-cont{
     margin-top: 4.1em;
-    padding: 2em;
+    padding: 1em;
 }
 
 .library-grid{
     display: flex;
     width: 100%;
     justify-content: space-around;
-    font-family: "Carter One", cursive;
+ 
     align-items: center;
+}
+
+.library-grid > div{
+    width: 70%;
+    
+}
+
+.library-grid > div > h4{
+    font-family: "Carter One", cursive;
+}
+
+.library-grid > div > p{
+    font-family: "Roboto Slab", cursive; 
 }

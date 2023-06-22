@@ -4,7 +4,15 @@ import "../css/Search.css";
 import Loader from "./loader";
 import { CSVLink, CSVDownload } from "react-csv";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { app, db } from "../firebase";
+import { getAuth } from "firebase/auth";
+import {
+  arrayUnion,
+  doc,
+  updateDoc,
+  addDoc
+} from "firebase/firestore";
+
 
 type DataType = {
   address: string | any;
@@ -20,6 +28,10 @@ export const Search = () => {
   const [rerenderedData, setRerenderedDat] = useState<any>([]);
   const [error, setError] = useState<string>();
   const [hospitalData, setHospitalData] = useState<any>([]);
+  const [allData, setAllData] = useState<any>();
+  const [user, setUser] = useState<any>();
+  const auth = getAuth(app);
+
 
   const getHospitals = () => {
     setIsLoading(true);
@@ -48,9 +60,60 @@ export const Search = () => {
       .catch((error) => console.log(error));
   };
 
+
+// Fetch user Data
+
+
+const getUserSavedList = () => {
+  const StoredHospitalList = collection(db, "userSavedData");
+  getDocs(StoredHospitalList).then((response) => {
+    const fetchedData = response.docs.map((doc) => ({
+      data: doc.data(),
+      id: doc.id,
+    }));
+    setAllData(fetchedData);
+  });
+};
+
+
+const filtered = allData?.filter(
+  (items: any) => items.data.userId === user?.uid
+);
+
+
+
+  const addTolibrary = ( item: any ) => {
+
+const updatingDocs = doc(db, "userSavedData",filtered[0]?.id);
+    updateDoc(updatingDocs, {
+      hospitalData: arrayUnion({
+        address: item.data.name,
+        name: item.data.address,
+      }),
+    })
+      .then((response) => {
+        console.log("success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
+    console.log(item.data.name , item.data.address)
+  }
+
   useEffect(() => {
     setIsLoading(true);
     getHospitals();
+    getUserSavedList()
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        console.log(user.uid);
+      } else {
+        setUser(null);
+      }
+    });
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,8 +170,15 @@ export const Search = () => {
                         <div>
                           <h1> {item.data?.name}</h1>
                           <p> {item.data.city.toUpperCase()} </p>
+                          {
+                            user? (  <button onClick={ () => {
+                              addTolibrary(item)
+                            }} > Add </button>) : " "
+                          }
+                         
                         </div>
                         <p> {item.data.address} </p>
+
                       </div>
                     ))}
                   </>
