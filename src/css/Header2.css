@@ -9,13 +9,23 @@
   position: fixed;
   top: 0;
 }
+
+.header2-cont > img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.profile-grid > h1 {
+  margin-top: 2em;
+  margin-bottom: -4em;
+}
 @media (min-width: 800px) {
   .header2-cont {
     height: 90vh;
   }
   .profile-grid {
     display: grid;
-    grid-template-columns: 0.1fr 2fr;
+    grid-template-columns: 0.1fr 2fr ;
     grid-gap: 2em;
     height: 89vh;
   }

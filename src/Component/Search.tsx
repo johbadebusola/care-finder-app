@@ -2,36 +2,21 @@ import React, { useEffect, useState } from "react";
 import hospitalLogo from "../images/hospital_icon.svg";
 import "../css/Search.css";
 import Loader from "./loader";
-import { CSVLink, CSVDownload } from "react-csv";
 import { collection, getDocs } from "firebase/firestore";
 import { app, db } from "../firebase";
 import { getAuth } from "firebase/auth";
-import {
-  arrayUnion,
-  doc,
-  updateDoc,
-  addDoc
-} from "firebase/firestore";
-
-
-type DataType = {
-  address: string | any;
-  name: string | any;
-  city: string | any;
-  id: string | any;
-  phone: string | null;
-}[];
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Search = () => {
-  const [hospitals, setHospitals] = useState<DataType>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [rerenderedData, setRerenderedDat] = useState<any>([]);
-  const [error, setError] = useState<string>();
+  const [error] = useState<string>();
   const [hospitalData, setHospitalData] = useState<any>([]);
   const [allData, setAllData] = useState<any>();
   const [user, setUser] = useState<any>();
   const auth = getAuth(app);
-
 
   const getHospitals = () => {
     setIsLoading(true);
@@ -60,51 +45,50 @@ export const Search = () => {
       .catch((error) => console.log(error));
   };
 
+  // Fetch user Data
 
-// Fetch user Data
+  const getUserSavedList = () => {
+    const StoredHospitalList = collection(db, "userSavedData");
+    getDocs(StoredHospitalList).then((response) => {
+      const fetchedData = response.docs.map((doc) => ({
+        data: doc.data(),
+        id: doc.id,
+      }));
+      setAllData(fetchedData);
+    });
+  };
 
+  const filtered = allData?.filter(
+    (items: any) => items.data.userId === user?.uid
+  );
 
-const getUserSavedList = () => {
-  const StoredHospitalList = collection(db, "userSavedData");
-  getDocs(StoredHospitalList).then((response) => {
-    const fetchedData = response.docs.map((doc) => ({
-      data: doc.data(),
-      id: doc.id,
-    }));
-    setAllData(fetchedData);
-  });
-};
-
-
-const filtered = allData?.filter(
-  (items: any) => items.data.userId === user?.uid
-);
-
-
-
-  const addTolibrary = ( item: any ) => {
-
-const updatingDocs = doc(db, "userSavedData",filtered[0]?.id);
+  const addTolibrary = (item: any) => {
+    const updatingDocs = doc(db, "userSavedData", filtered[0]?.id);
     updateDoc(updatingDocs, {
       hospitalData: arrayUnion({
-        address: item.data.name,
-        name: item.data.address,
+        address: item.data.address,
+        name: item.data.name,
       }),
     })
       .then((response) => {
+        toast.success("Added to Library", {
+          position: "top-right",
+          autoClose: 800,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored",
+        });
         console.log("success");
       })
       .catch((error) => {
         console.log(error);
       });
-  
-    console.log(item.data.name , item.data.address)
-  }
+  };
 
   useEffect(() => {
     setIsLoading(true);
     getHospitals();
-    getUserSavedList()
+    getUserSavedList();
 
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -129,6 +113,16 @@ const updatingDocs = doc(db, "userSavedData",filtered[0]?.id);
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        theme="colored"
+      />
       <div className="search-box1">
         <img src={hospitalLogo} alt="hospital-logo" />
         <h2> Search for Hospitals in Nigeria</h2>
@@ -143,10 +137,6 @@ const updatingDocs = doc(db, "userSavedData",filtered[0]?.id);
         />
       </div>
 
-      <CSVLink data={hospitals} filename={"HospitalList.csv"}>
-        <button> Export </button>
-      </CSVLink>
-
       {error ? (
         <h2> {error} </h2>
       ) : (
@@ -157,34 +147,33 @@ const updatingDocs = doc(db, "userSavedData",filtered[0]?.id);
             </div>
           ) : (
             <div>
-              {
-                hospitalData.length === 0 ? (
-                  <h1 className="no-products-found">
-                    {" "}
-                    No products are found!{" "}
-                  </h1>
-                ) : (
-                  <>
-                    {hospitalData.map((item: any) => (
-                      <div key={item.id} className="hospitalList">
-                        <div>
-                          <h1> {item.data?.name}</h1>
-                          <p> {item.data.city.toUpperCase()} </p>
-                          {
-                            user? (  <button onClick={ () => {
-                              addTolibrary(item)
-                            }} > Add </button>) : " "
-                          }
-                         
-                        </div>
-                        <p> {item.data.address} </p>
-
+              {hospitalData.length === 0 ? (
+                <h1 className="no-products-found"> No products are found! </h1>
+              ) : (
+                <>
+                  {hospitalData.map((item: any) => (
+                    <div key={item.id} className="hospitalList">
+                      <div>
+                        <h1> {item.data?.name}</h1>
+                        <p> {item.data.city.toUpperCase()} </p>
+                        {user ? (
+                          <button
+                            onClick={() => {
+                              addTolibrary(item);
+                            }}
+                          >
+                            {" "}
+                            Add{" "}
+                          </button>
+                        ) : (
+                          " "
+                        )}
                       </div>
-                    ))}
-                  </>
-                )
-                //
-              }
+                      <p> {item.data.address} </p>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           )}
         </div>

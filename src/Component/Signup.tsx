@@ -31,21 +31,21 @@ export const Signup = () => {
       );
       // Signed in
       setLoading(false);
-     
-      const user:any = userCredential.user;
+
+      const user: any = userCredential.user;
       updateProfile(user, {
         displayName: fullName,
       }).then(() => {
         setLoading(false);
         console.log("displayNname updated");
-       
-        addDoc(collection(db, "userSavedData"), {
-          userId:user.uid,
-         hospitalData:[]
-     })
 
+        addDoc(collection(db, "userSavedData"), {
+          userId: user.uid,
+          hospitalData: [],
+          UserDisplayName: user.displayName,
+          image:""
+        });
       });
-     
     } catch (error: any) {
       setLoading(false);
       const errorCode = error.code;
@@ -65,19 +65,12 @@ export const Signup = () => {
         setError("Input Password");
       }
 
-      
       if (errorCode === "auth/email-already-in-use") {
         setError("User already exist");
       }
-
-      
-     
-     
     }
-   
   };
 
- 
   return (
     <>
       <div className="login">

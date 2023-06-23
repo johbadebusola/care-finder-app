@@ -30,7 +30,6 @@ export const Header = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setLoggedin(true);
-        console.log(user)
       } else {
         setLoggedin(false);
       }
