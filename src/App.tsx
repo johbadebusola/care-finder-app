@@ -7,6 +7,9 @@ import { getAuth } from "firebase/auth";
 import { app } from "./firebase";
 import { Profile } from "./Component/LoggedInUser/Profile";
 
+
+
+
 function App() {
   const [loggedin, setLoggedin] = useState<boolean>(false);
   const auth = getAuth(app);
@@ -37,4 +40,4 @@ function App() {
 
 export default App;
 
-// 1`
+// firebase deploy --only hosting:carefiinder
