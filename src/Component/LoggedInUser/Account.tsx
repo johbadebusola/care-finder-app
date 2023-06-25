@@ -86,7 +86,7 @@ export const Account = () => {
   const UploadImage = () => {
     if (updateImage === null) return;
     const user: any = auth.currentUser;
-    const imageRefs = ref(storage, `image`);
+    const imageRefs = ref(storage, `Avatar/image${user.displayName}`);
 
     //  uploading image to firebase Storage
     uploadBytes(imageRefs, updateImage)
@@ -195,7 +195,7 @@ export const Account = () => {
               <br />
               <input
                 type="text"
-                placeholder={filtered ? filtered[0].data.UserDisplayName : "Loading"}
+                placeholder={filtered ? filtered[0]?.data.UserDisplayName : "Loading"}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setUpdateFullname(event.target.value);
                   if (event.target.value.length === 0) {

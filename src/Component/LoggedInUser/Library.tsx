@@ -11,12 +11,20 @@ import {
 import { getAuth } from "firebase/auth";
 import trash from "../../images/trash.png";
 import { ToastContainer, toast } from "react-toastify";
+import { CSVLink } from "react-csv";
 
 export const Library = () => {
   const [allData, setAllData] = useState<any>();
   const [user, setUser] = useState<any>();
-
+  const [rerender, setRerender] = useState<any>();
   const auth = getAuth(app);
+  const datas: any = [];
+  const headers = [
+    { label: "NAME", key: "name" },
+    { label: "ADDRESS", key: "address" },
+    
+  ];
+
   const getUserSavedList = () => {
     const StoredHospitalList = collection(db, "userSavedData");
     onSnapshot(StoredHospitalList, (snapshot) => {
@@ -24,8 +32,6 @@ export const Library = () => {
         data: doc.data(),
         id: doc.id,
       }));
-
-      console.log(Data);
       setAllData(Data);
     });
   };
@@ -67,8 +73,25 @@ export const Library = () => {
   );
 
   if (filtered) {
-    console.log(filtered[0].data?.hospitalData.length)
+    for (let item = 0; item < filtered[0]?.data?.hospitalData.length; item++) {
+      const data = {
+        name: filtered[0].data.hospitalData[item].name,
+        address: filtered[0].data.hospitalData[item].address,
+      };
+
+      datas.push(data);
+    }
   }
+
+
+  const csvReport = {
+    data:datas,
+    headers:headers,
+    filename: "Hospital-list.csv"
+  }
+  console.log(filtered);
+
+  console.log(datas);
 
   return (
     <div className="library-cont">
@@ -88,12 +111,15 @@ export const Library = () => {
         {filtered ? (
           <>
             <div>
-
-              {
-                filtered ?
-                filtered[0].data.hospitalData.length === 0 ?<h4> No added Hospital</h4>  :  " " : <h4> No added Hospital</h4>
-              }
-
+              {filtered ? (
+                filtered[0].data.hospitalData.length === 0 ? (
+                  <h4> No added Hospital</h4>
+                ) : (
+                  " "
+                )
+              ) : (
+                <h4> No added Hospital</h4>
+              )}
 
               {filtered[0]?.data.hospitalData.map(
                 (item: any, index: number) => (
@@ -120,6 +146,8 @@ export const Library = () => {
           <h4> No added Hospital</h4>
         )}
       </div>
+      
+      <CSVLink className="export" {...csvReport}>Export to CSV</CSVLink>
     </div>
   );
 };

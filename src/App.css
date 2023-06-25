@@ -22,3 +22,11 @@
     background-color: var(--blue);
     color: white;
 }
+
+.error404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: red;
+}

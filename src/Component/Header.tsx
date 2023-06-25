@@ -36,8 +36,6 @@ export const Header = () => {
     });
   },[])
 
-
-  console.log(loggedin)
   return (
     <>
       <div className="header-cont">
@@ -49,11 +47,15 @@ export const Header = () => {
           <ul>
             <li>
               {" "}
-              <Link to="/"> Home </Link>{" "}
+              <Link onClick={() => {
+              setToggle(false)
+            }} to="/"> Home </Link>{" "}
             </li>
             <li>
               {" "}
-              <Link to="/search"> HospitalList</Link>{" "}
+              <Link onClick={() => {
+              setToggle(false)
+            }} to="/search"> HospitalList</Link>{" "}
             </li>
           </ul>
         </div>

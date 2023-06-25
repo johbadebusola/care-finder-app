@@ -30,7 +30,7 @@ const Home = () => {
     getHospitals();
   }, []);
 
-  console.log(hospitalData);
+
   return (
     <div className="Home-cont">
       <div className="box1">

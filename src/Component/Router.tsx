@@ -5,6 +5,7 @@ import Users from './User'
 import Home from './Home'
 import { Login } from './Login'
 import { Signup } from './Signup'
+import { Error404 } from './Error404'
 
 
 export const Router = () => {
@@ -16,6 +17,7 @@ export const Router = () => {
             <Route path='/users'  element={<Users />} /> 
             <Route path='/login'  element={<Login/>} /> 
             <Route path='/signup'  element={<Signup/>} /> 
+            <Route path='*'  element={<Error404/>} /> 
         </Routes>
     </div>
   )

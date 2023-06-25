@@ -64,17 +64,23 @@ export const Header2 = () => {
 
         <div className={`nav navigation ${toggle ? " " : "active"}`}>
           <ul>
-            <li>
+            <li  >
               {" "}
-              <Link to="/"> Account</Link>{" "}
+              <Link onClick={() => {
+              setToggle(false)
+            }} to="/"> Account</Link>{" "}
             </li>
             <li>
               {" "}
-              <Link to="/search"> HospitalList</Link>{" "}
+              <Link onClick={() => {
+              setToggle(false)
+            }} to="/search"> HospitalList</Link>{" "}
             </li>
             <li>
               {" "}
-              <Link to="/library"> Library</Link>{" "}
+              <Link onClick={() => {
+              setToggle(false)
+            }} to="/library"> Library</Link>{" "}
             </li>
           </ul>
         </div>
