@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { app, db } from "../../firebase";
 import "../../css/Header2.css";
-import { collection, getDoc, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import avatar from "../../images/user.png";
 
 export const Header2 = () => {
@@ -21,6 +21,7 @@ export const Header2 = () => {
       .then(() => {
         console.log("signedout");
         navigate("/");
+        localStorage.removeItem("users")
       })
       .catch((error) => {
         // An error happened.

@@ -14,8 +14,8 @@ export const Account = () => {
   const [success, setSuccess] = useState<string>();
   const [user, setUser] = useState<any>([]);
   const auth = getAuth(app);
-  const [url, setUrl] = useState<any>();
-  const [userName, setUserName] = useState<any>();
+
+  const [loading, setLoading] = useState<boolean>(false);
   const [allData, setAllData] = useState<any>();
   const StoredHospitalList = collection(db, "userSavedData");
   const updateMail = () => {
@@ -77,13 +77,17 @@ export const Account = () => {
   };
 
   const handleImageChange = (e: any) => {
+   
     setUpdateImage(e.target.files[0]);
 
     if (!e.target.files[0]) {
       setError("Please select a file");
     }
   };
+
+
   const UploadImage = () => {
+    setLoading(true);
     if (updateImage === null) return;
     const user: any = auth.currentUser;
     const imageRefs = ref(storage, `Avatar/image${user.displayName}`);
@@ -107,7 +111,8 @@ export const Account = () => {
             const updatingDocs = doc(db, "userSavedData", filtered[0]?.id);
             updateDoc(updatingDocs, { image: url })
               .then((response) => {
-                toast.success("Updated firebase", {
+                setLoading(false);
+                toast.success("Image Uploaded ", {
                   position: "top-right",
                   autoClose: 800,
                   hideProgressBar: false,
@@ -122,10 +127,12 @@ export const Account = () => {
           })
           .catch((error) => {
             console.log(error);
+            setLoading(false);
           });
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   };
   const getUserSavedList = () => {
@@ -195,7 +202,9 @@ export const Account = () => {
               <br />
               <input
                 type="text"
-                placeholder={filtered ? filtered[0]?.data.UserDisplayName : "Loading"}
+                placeholder={
+                  filtered ? filtered[0]?.data.UserDisplayName : "Loading"
+                }
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setUpdateFullname(event.target.value);
                   if (event.target.value.length === 0) {
@@ -209,7 +218,9 @@ export const Account = () => {
               <label>Upload Picture</label>
               <br />
               <input type="file" onChange={handleImageChange} />
-              <button onClick={UploadImage}> SAVE </button>
+              <button onClick={UploadImage}> {
+                loading ? "Uploading.." : "SAVE"
+              } </button>
             </div>
           </div>
         </div>

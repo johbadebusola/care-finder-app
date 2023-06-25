@@ -6,25 +6,31 @@ import { Router } from "./Component/Router";
 import { getAuth } from "firebase/auth";
 import { app } from "./firebase";
 import { Profile } from "./Component/LoggedInUser/Profile";
-
-
-
+import { json } from "stream/consumers";
 
 function App() {
   const [loggedin, setLoggedin] = useState<boolean>(false);
   const auth = getAuth(app);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setLoggedin(true);
+        localStorage.setItem("user", "true");
       } else {
+        localStorage.removeItem("user");
         setLoggedin(false);
       }
     });
   }, []);
+
+  const userLocal = JSON.parse(
+    typeof localStorage["user"] == "undefined" ? null : localStorage["user"]
+  );
+
   return (
     <div className="App">
-      {loggedin ? (
+      {userLocal ? (
         <div>
           <Profile />
         </div>
