@@ -8,14 +8,13 @@
   background-color: white;
   position: fixed;
   top: 0;
+  box-shadow: 2px 2px 5px black;
 }
 
 .header-cont > p {
   font-size: large;
 }
-
-
-
+2
 .header-cont > p span {
   color: var(--blue);
   margin-left: -0.2em;
@@ -33,7 +32,7 @@
     justify-content: space-between;
     width: 220px;
   }
-  .profile-img{
+  .profile-img {
     margin-left: -6em;
   }
 }
@@ -56,14 +55,15 @@
   width: 158px;
 }
 
-.nav{
+.nav {
   position: absolute;
   right: 3em;
   top: 4.1em;
+  background-color: var(--blue);
+  border: 1px solid black;
 }
 .nav > ul {
   list-style-type: none;
-  border: 1px solid var(--blue);
   /* text-align: center; */
   margin: 0;
   padding: 0;
@@ -72,18 +72,20 @@
 .nav > ul > li a {
   display: block;
   text-decoration: none;
-  color: var(--blue);
-  border-bottom: 1px solid var(--blue);
+  color: white;
+  font-weight: bold;
   padding: 10px;
+  border-bottom: 1px solid white;
 }
 
 .nav > ul > li a:hover {
-  background-color: var(--blue);
-  color: white;
+  background-color: white;
+  color: var(--blue);
+  font-family: var(--montserrat);
+  border-bottom: 2px solid black;
 }
 
-
-.hamburger{
+.hamburger {
   margin-right: 2em;
 }
 .hamburger > .menu1,
@@ -113,13 +115,13 @@
   transition: ease-in-out;
 }
 
-
 @media (min-width: 1200px) {
-
-  .nav{
+  .nav {
     position: absolute;
     right: 50em;
     top: 0.7em;
+    background-color: transparent;
+    border: none;
   }
   .nav > ul {
     width: 100%;
@@ -130,19 +132,20 @@
   .nav > ul > li {
     float: left;
 
-  
     /* width: 33.3%; */
   }
   .nav > ul > li a {
     border-bottom: none;
+    color: var(--blue);
   }
   .nav > ul > li a:hover {
     border-bottom: 1px solid var(--blue) !important;
     background-color: transparent;
     color: var(--blue);
+    font-size: 15px;
   }
 
-  .hamburger{
+  .hamburger {
     display: none;
   }
 
@@ -151,7 +154,14 @@
   }
 }
 
-
-.profile-btn{
+.profile-btn {
   margin-top: 8em;
+}
+
+
+.Loader{
+  margin-top: 7em;
+  font-weight: bold;
+  color: red;
+  font-weight: 3em;
 }

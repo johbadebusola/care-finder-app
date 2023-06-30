@@ -12,6 +12,7 @@ import { getAuth } from "firebase/auth";
 import trash from "../../images/trash.png";
 import { ToastContainer, toast } from "react-toastify";
 import { CSVLink } from "react-csv";
+import { EmailShareButton, EmailIcon } from "react-share";
 
 export const Library = () => {
   const [allData, setAllData] = useState<any>();
@@ -108,11 +109,11 @@ export const Library = () => {
       <h1> Library</h1>
 
       <div>
-        {filtered ? (
+        {filtered  ? (
           <>
             <div>
               {filtered ? (
-                filtered[0].data.hospitalData.length === 0 ? (
+                filtered[0]?.data.hospitalData.length === 0 ? (
                   <h4> No added Hospital</h4>
                 ) : (
                   " "
@@ -148,6 +149,13 @@ export const Library = () => {
       </div>
       
       <CSVLink className="export" {...csvReport}>Export to CSV</CSVLink>
+<br />
+<div>
+<EmailShareButton url=" ">
+        <EmailIcon />
+      </EmailShareButton>
+</div>
+      
     </div>
   );
 };

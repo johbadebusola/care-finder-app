@@ -78,6 +78,14 @@
     justify-content: center;
 }
 
+.no-products-found{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: red;
+}
+
 
 @media (min-width:768px){
     .search-box1 > p{

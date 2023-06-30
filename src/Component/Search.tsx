@@ -8,8 +8,9 @@ import { getAuth } from "firebase/auth";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import "react-toastify/dist/ReactToastify.min.css";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
-export const Search = () => {
+const Search = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [rerenderedData, setRerenderedDat] = useState<any>([]);
   const [error] = useState<string>();
@@ -113,6 +114,17 @@ export const Search = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Search for Hospitals in Nigeriar</title>
+        <meta
+          name="description"
+          content="Search for Hospitals in Nigeria by location or name"
+        />
+        <meta
+          name="keywords"
+          content="Location, Hospital list, search by name "
+        />
+      </Helmet>
       <ToastContainer
         position="top-right"
         autoClose={1000}
@@ -181,3 +193,5 @@ export const Search = () => {
     </>
   );
 };
+
+export default Search;

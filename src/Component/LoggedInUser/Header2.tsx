@@ -5,7 +5,8 @@ import { app, db } from "../../firebase";
 import "../../css/Header2.css";
 import { collection, onSnapshot } from "firebase/firestore";
 import avatar from "../../images/user.png";
-
+import "../../css/Header.css";
+import "../../css/Header2.css";
 export const Header2 = () => {
   const [toggle, setToggle] = useState(false);
   const auth = getAuth(app);
@@ -21,7 +22,7 @@ export const Header2 = () => {
       .then(() => {
         console.log("signedout");
         navigate("/");
-        localStorage.removeItem("users")
+        localStorage.removeItem("users");
       })
       .catch((error) => {
         // An error happened.
@@ -63,40 +64,73 @@ export const Header2 = () => {
           Log out
         </button>
 
-        <div className={`nav navigation ${toggle ? " " : "active"}`}>
+        <div className={`nav navigation ${toggle ? " " : "active2"}`}>
           <ul>
-            <li  >
+            <li>
               {" "}
-              <Link onClick={() => {
-              setToggle(false)
-            }} to="/"> Account</Link>{" "}
+              <Link
+                onClick={() => {
+                  setToggle(false);
+                }}
+                to="/"
+              >
+                {" "}
+                Account
+              </Link>{" "}
             </li>
             <li>
               {" "}
-              <Link onClick={() => {
-              setToggle(false)
-            }} to="/search"> HospitalList</Link>{" "}
+              <Link
+                onClick={() => {
+                  setToggle(false);
+                }}
+                to="/search"
+              >
+                {" "}
+                HospitalList
+              </Link>{" "}
             </li>
             <li>
               {" "}
-              <Link onClick={() => {
-              setToggle(false)
-            }} to="/library"> Library</Link>{" "}
+              <Link
+                onClick={() => {
+                  setToggle(false);
+                }}
+                to="/library"
+              >
+                {" "}
+                Library
+              </Link>{" "}
+            </li>
+            <li>
+            <Link
+                onClick={() => {
+                  setToggle(false);
+                }}
+                to="/post"
+              >
+                {" "}
+                Post
+              </Link>{" "}
             </li>
           </ul>
         </div>
 
         {filtered ? (
           filtered[0]?.data.image === "" ? (
-            <img src={avatar} alt="avatar" />
+            <img className="avatars" src={avatar} alt="avatar" />
           ) : (
-            <img src={filtered ? filtered[0]?.data.image : ""} alt="avatar" />
+            <img
+              className="avatars"
+              src={filtered ? filtered[0]?.data.image : ""}
+              alt="avatar"
+            />
           )
         ) : (
-          <img src={avatar} alt="avatar" />
+          <img className="avatars" src={avatar} alt="avatar" />
         )}
 
-        <div className="hamburger" onClick={toggleMenu}>
+        <div className="hamburger header2-hamburger" onClick={toggleMenu}>
           <div className={` menu1 ${toggle ? " menu1-toggle" : ""}`}> </div>
           <div className={` menu2 ${toggle ? " menu2-toggle" : ""}`}> </div>
           <div className={` menu3 ${toggle ? " menu3-toggle" : ""}`}> </div>

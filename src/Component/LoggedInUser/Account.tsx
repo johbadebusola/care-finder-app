@@ -5,6 +5,7 @@ import { app, db, storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
+
 export const Account = () => {
   const [updateEmail, setUpdateEmail] = useState<any>();
   const [updateFullname, setUpdateFullname] = useState<string | null>();
@@ -77,14 +78,12 @@ export const Account = () => {
   };
 
   const handleImageChange = (e: any) => {
-   
     setUpdateImage(e.target.files[0]);
 
     if (!e.target.files[0]) {
       setError("Please select a file");
     }
   };
-
 
   const UploadImage = () => {
     setLoading(true);
@@ -218,9 +217,10 @@ export const Account = () => {
               <label>Upload Picture</label>
               <br />
               <input type="file" onChange={handleImageChange} />
-              <button onClick={UploadImage}> {
-                loading ? "Uploading.." : "SAVE"
-              } </button>
+              <button onClick={UploadImage}>
+                {" "}
+                {loading ? "Uploading.." : "SAVE"}{" "}
+              </button>
             </div>
           </div>
         </div>

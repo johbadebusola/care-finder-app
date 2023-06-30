@@ -4,7 +4,7 @@ import { useState } from "react";
 import { app } from "../firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-export const Login = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -87,3 +87,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login

@@ -1,0 +1,254 @@
+.App-header {
+  min-height: 5vh;
+  /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  background-color: #282c34;
+  color: white;
+  margin-bottom: 5vh;
+  text-align: center;
+  padding: 12px;
+  margin-top: 4.1em;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color: lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.toolbar-class {
+  border: 1px solid #ccc;
+}
+
+.preview {
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.feed-cont {
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  margin-bottom: 2em;
+  margin: 2em;
+  padding: 1em;
+}
+
+.feed-cont2 {
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  margin-bottom: 2em;
+  margin: 2em;
+  padding: 1em;
+}
+
+.feed-cont2 > .grid1 {
+  display: flex;
+  align-items: center;
+}
+
+.feed-cont2 > .grid1 > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+
+.feed-cont2 > .grid1 > p {
+  font-size: 12px;
+  font-family: "Carter One", cursive;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.feed-cont > .grid1 > div > p {
+  font-size: 12px;
+  font-family: "Carter One", cursive;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.feed-cont > .grid1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feed-cont > .grid1 > div > p {
+  font-size: 12px;
+  font-family: "Carter One", cursive;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.feed-cont > .grid1 > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feed-cont > .grid1 > div > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+
+.post {
+  margin-top: 4.1em;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons > .btn {
+  margin-top: 1em;
+  padding: 0.5em 0.7em;
+  margin-left: 2em;
+  font-weight: bold;
+  font-family: "Carter One", cursive;
+}
+
+.buttons > .btn2 {
+  border: none;
+  background-color: transparent;
+  margin-top: 1em;
+  padding: 0.5em 0.7em;
+  margin-right: 2em;
+  font-weight: bold;
+  font-family: "Carter One", cursive;
+}
+
+.buttons > .btn2:hover {
+  color: var(--blue);
+}
+
+.buttons > .btn:hover {
+  background-color: var(--blue);
+  border: none;
+  color: white;
+}
+
+@media (min-width: 700px) {
+  .App-header {
+    margin-top: 2em;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+}
+
+.form-comment {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-comment > button {
+  margin-top: 1em;
+  width: 30%;
+  padding: 0.5em 1em;
+  border: 1px soild #282c34;
+  border-radius: 10px;
+  background-color: transparent;
+  margin-left: 3.2em;
+}
+
+.form-comment > button:hover {
+  background-color: var(--blue);
+  color: white;
+}
+.form-comment > div {
+  display: flex;
+  justify-content: start;
+}
+
+.form-comment > div > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+.comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment > div {
+  display: flex;
+  align-items: center;
+}
+
+.comment > div > img {
+  margin-right: 0.3em;
+}
+
+.TextArea {
+  width: 50%;
+  height: 90px;
+  resize: none;
+  border: 1px solid #282c34;
+}
+
+.comment-box {
+  display: none;
+}
+
+.toggle-comment {
+  display: block;
+}
+
+.view-comment {
+  background-color: #282c34;
+  color: white;
+  padding: 0.2em;
+  margin-bottom: 1em;
+}
+.view-comment > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: -1em;
+}
+
+.view-comment > div > img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+
+.view-comment > div > p {
+  font-size: 12px;
+  font-family: "Carter One", cursive;
+}
+
+.view-comment > p {
+  margin-left: 2.3em;
+  font-size: 13px;
+}
+
+.add-icon > img {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}

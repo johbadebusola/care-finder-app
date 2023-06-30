@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useNavigate } from "react-router";
 import { app, db } from "../firebase";
 import {
@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
-export const Signup = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>();
@@ -120,3 +120,5 @@ export const Signup = () => {
     </>
   );
 };
+
+export default Signup
