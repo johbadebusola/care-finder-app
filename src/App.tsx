@@ -8,13 +8,11 @@ import { app } from "./firebase";
 import { Profile } from "./Component/LoggedInUser/Profile";
 
 
-
-const Login = lazy(() => import("./Component/Login") )
+const Login = lazy(() => import("./Component/Login"));
 
 function App() {
   const [loggedin, setLoggedin] = useState<boolean>(false);
   const auth = getAuth(app);
- 
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -33,26 +31,39 @@ function App() {
   );
 
   return (
-    <div className="App">
-      <Helmet>
-      <title>Hospitals in Nigeria | Care Finder</title>
-        <meta
-          name="description"
-          content="A website that hepls to search for hospitals around Nigeria. you can add hospitals to a library and also export to csv"
-        />
-        <meta name="keywords" content="Hospital, Hospial list, Export hospitals to csv" />
-      </Helmet>
-      {userLocal ? (
-        <div>
-          <Profile />
+    <>
+    
+        <div className="App">
+          <Helmet>
+            <title>Hospitals in Nigeria | Care Finder</title>
+            <meta
+              name="description"
+              content="A website that hepls to search for hospitals around Nigeria. you can add hospitals to a library and also export to csv"
+            />
+            <meta
+              name="keywords"
+              content="Hospital, Hospial list, Export hospitals to csv"
+            />
+          </Helmet>
+          {userLocal ? (
+            <div>
+              
+              <Profile />
+           
+             
+            </div>
+          ) : (
+            <div>
+
+              <Header />
+              <Router />
+             
+              
+            </div>
+          )}
         </div>
-      ) : (
-        <div>
-          <Header />
-          <Router />
-        </div>
-      )}
-    </div>
+ 
+    </>
   );
 }
 

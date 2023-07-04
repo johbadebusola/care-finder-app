@@ -9,6 +9,8 @@ import search from "../images/search.svg";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
+
+
 const Home = () => {
   const [hospitalData, setHospitalData] = useState<any | null>(null);
 
@@ -33,6 +35,8 @@ const Home = () => {
 
   return (
     <div className="Home-cont">
+
+    
       <div className="box1">
         <div className="grid1">
           <h2> Find a hospital within your Location</h2>
@@ -93,6 +97,9 @@ const Home = () => {
           <p>Save list of hospitals</p>
         </div>
       </div>
+
+   
+ 
     </div>
   );
 };

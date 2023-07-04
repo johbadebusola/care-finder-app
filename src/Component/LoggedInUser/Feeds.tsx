@@ -5,7 +5,15 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../css/Feeds.css";
 import draftToHtml from "draftjs-to-html";
 import { app, db } from "../../firebase";
-import { addDoc, arrayRemove, collection, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayRemove,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -54,7 +62,6 @@ const Feeds = () => {
     (items: any) => items.data.userId === user?.uid
   );
 
-  console.log(filteredPost);
 
 
   useEffect(() => {
@@ -97,23 +104,21 @@ const Feeds = () => {
     navigate("/post");
   };
 
-  const deletePost = (item:any) => {
-
-    deleteDoc(doc(db, "FeedData", filteredPost[0]?.id)) 
-    .then((response) => {
-      toast.error("Deleted", {
-        position: "top-right",
-        autoClose: 800,
-        hideProgressBar: false,
-        closeOnClick: true,
-        theme: "colored",
+  const deletePost = (item: any) => {
+    deleteDoc(doc(db, "FeedData", filteredPost[0]?.id))
+      .then((response) => {
+        toast.error("Deleted", {
+          position: "top-right",
+          autoClose: 800,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "colored",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-     
-  }
+  };
 
   return (
     <div>
@@ -162,34 +167,39 @@ const Feeds = () => {
         </motion.button>
       </div>
 
-<div className="App-header"> Your Post </div>
+      <div className="App-header"> Your Post </div>
       {filteredPost ? (
         <div>
           {filteredPost?.map((item: any) => (
-            <div key={filteredPost.id} className="feed-cont">
-              <div className="grid1">
-                <div>
-                  <img src={item.data.image} alt="img" />
-                  <p> {item.data.UserDisplayName}</p>
+            <>
+              <div key={filteredPost.id} className="feed-cont">
+                <div className="grid1">
+                  <div>
+                    <img src={item.data.image} alt="img" />
+                    <p> {item.data.UserDisplayName}</p>
+                  </div>
+                  <motion.img
+                    onClick={() => {
+                      deletePost(item);
+                    }}
+                    src={del}
+                    alt="del"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  />
                 </div>
-                <motion.img
-                onClick={() => { deletePost(item)}}
-                  src={del}
-                  alt="del"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                <div
+                  id="preview"
+                  className="bg-info"
+                  dangerouslySetInnerHTML={{
+                    __html: draftToHtml(JSON.parse(item.data.FeedData)),
+                  }}
                 />
-                
               </div>
-              <div
-                id="preview"
-                className="bg-info"
-                dangerouslySetInnerHTML={{
-                  __html: draftToHtml(JSON.parse(item.data.FeedData)),
-                }}
-              />
-            </div>
+            </>
           ))}
+
+          {filteredPost?.length === 0 ? <h4 className="no-post"> No Post Yet </h4> : " "}
         </div>
       ) : (
         <div className="loader">

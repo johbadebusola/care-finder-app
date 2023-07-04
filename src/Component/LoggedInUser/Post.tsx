@@ -13,7 +13,7 @@ import { getAuth } from "firebase/auth";
 import Loader from "../loader";
 import commentIcon from "../../images/comment.png";
 import { ToastContainer, toast } from "react-toastify";
-import addIcon from "../../images/add100.png"
+import addIcon from "../../images/add100.png";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 const Post = () => {
@@ -24,7 +24,7 @@ const Post = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [commentData, setCommentData] = useState<any>();
   const [clear, SetClear] = useState<boolean>(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const getFeedData = () => {
     setLoading(true);
     const StoredHospitalList = collection(db, "FeedData");
@@ -38,7 +38,7 @@ const Post = () => {
     });
   };
 
-  console.log(allData);
+
 
   const toggleComment = (index: number) => {
     setToggle(!toggle);
@@ -85,7 +85,6 @@ const Post = () => {
             console.log("success");
             setToggle(!toggle);
             SetClear(!clear);
-            
           })
           .catch((error) => {
             console.log(error);
@@ -101,9 +100,9 @@ const Post = () => {
       closeOnClick: true,
       theme: "colored",
     });
-
-    
   };
+
+
   return (
     <>
       <ToastContainer
@@ -124,7 +123,7 @@ const Post = () => {
       ) : (
         <div>
           {allData?.map((item: any, index: number) => (
-            <div key={allData.id} className="feed-cont2">
+            <div key={index} className="feed-cont2">
               <div className="grid1">
                 <img src={item.data.image} alt="img" />
                 <p> {item.data.UserDisplayName}</p>
@@ -137,34 +136,34 @@ const Post = () => {
                 }}
               />
 
-{
-  item ? (
-    <div className="comment">
-    <div>
-    <motion.img
-     onClick={() => {
-      toggleComment(index);
-    }}
-          style={{ width: "20px" }}
-          src={commentIcon}
-          alt="addLogo"
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.9 }}
-        />
-     
-      <p> {item.data.commentText?.length} </p>
-    </div>
+              {item ? (
+                <div className="comment">
+                  <div>
+                    <motion.img
+                      onClick={() => {
+                        toggleComment(index);
+                      }}
+                      style={{ width: "20px" }}
+                      src={commentIcon}
+                      alt="addLogo"
+                      whileHover={{ scale: 1.3 }}
+                      whileTap={{ scale: 0.9 }}
+                    />
 
-    {/* <p> View comment</p> */}
-  </div>
-  ) : ( <p> No data</p>)
-}
-            
+                    <p> {item.data.commentText?.length} </p>
+                  </div>
+
+                  {/* <p> View comment</p> */}
+                </div>
+              ) : (
+                <p> No data</p>
+              )}
+
               <div>
                 {item ? (
                   <div>
-                    {item.data.commentText?.map((comment: any) => (
-                      <div className="view-comment">
+                    {item.data.commentText?.map((comment: any, index:number) => (
+                      <div key={index} className="view-comment">
                         <div>
                           <img src={comment.userImage} alt="img" />
                           <p> {comment.name}</p>
@@ -209,12 +208,12 @@ const Post = () => {
           ))}
         </div>
       )}
-
+      {allData?.length === 0 ? <h4 className="no-post2"> No Post Yet </h4> : " "}
       <div className="add-icon">
         <motion.img
-        onClick={()=>{
-          navigate("/feeds")
-        }}
+          onClick={() => {
+            navigate("/feeds");
+          }}
           style={{ width: "50px" }}
           src={addIcon}
           alt="addLogo"

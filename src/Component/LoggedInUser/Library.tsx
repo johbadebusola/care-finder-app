@@ -12,7 +12,8 @@ import { getAuth } from "firebase/auth";
 import trash from "../../images/trash.png";
 import { ToastContainer, toast } from "react-toastify";
 import { CSVLink } from "react-csv";
-import { EmailShareButton, EmailIcon } from "react-share";
+
+import { EmailShareButton, EmailIcon, TwitterShareButton, TwitterIcon } from "react-share";
 
 export const Library = () => {
   const [allData, setAllData] = useState<any>();
@@ -23,7 +24,6 @@ export const Library = () => {
   const headers = [
     { label: "NAME", key: "name" },
     { label: "ADDRESS", key: "address" },
-    
   ];
 
   const getUserSavedList = () => {
@@ -62,7 +62,6 @@ export const Library = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        console.log(user.uid);
       } else {
         setUser(null);
       }
@@ -84,15 +83,13 @@ export const Library = () => {
     }
   }
 
-
   const csvReport = {
-    data:datas,
-    headers:headers,
-    filename: "Hospital-list.csv"
-  }
-  console.log(filtered);
+    data: datas,
+    headers: headers,
+    filename: "Hospital-list.csv",
+  };
 
-  console.log(datas);
+;
 
   return (
     <div className="library-cont">
@@ -109,7 +106,7 @@ export const Library = () => {
       <h1> Library</h1>
 
       <div>
-        {filtered  ? (
+        {filtered ? (
           <>
             <div>
               {filtered ? (
@@ -124,20 +121,16 @@ export const Library = () => {
 
               {filtered[0]?.data.hospitalData.map(
                 (item: any, index: number) => (
-                  <div className="library-grid" key={item.id}>
+                  <div className="library-grid" key={index}>
                     <div>
                       <h4> {item.name} </h4>
                       <p> {item.address}</p>
                     </div>
 
-                    <button
-                      onClick={() => {
+                      <img onClick={() => {
                         deleteList(item);
-                      }}
-                    >
-                      {" "}
-                      <img src={trash} alt="delete" />{" "}
-                    </button>
+                      }} src={trash} alt="delete" />{" "}
+                  
                   </div>
                 )
               )}
@@ -147,15 +140,35 @@ export const Library = () => {
           <h4> No added Hospital</h4>
         )}
       </div>
+
+      <CSVLink className="export" {...csvReport}>
+        <button className="csv-btn">Export saved Hospitals to CSV</button>
+      </CSVLink>
+      <br />
+      <div className="Share">
+        <h4>Share List Of Hospitals Via : </h4>
+        <div>
+        <EmailShareButton 
+        className="email"
+          subject="List of All Hospitals From CareFinder"
+          body={`  This is a Link to view the list of Hospitals in Nigeria
+          `
+          }  
+          url={"https://carefiinder.web.app/search"}
+        >
+          <EmailIcon size={32} round={true} />
+        </EmailShareButton>
+        
+        <TwitterShareButton
+         url={"https://carefiinder.web.app/search"}
+         title="View List of hospitals in Nigeria ono careFinder  "
+    
+        >
+          <TwitterIcon size={32} round={true} />
+        </TwitterShareButton>
+        </div>
       
-      <CSVLink className="export" {...csvReport}>Export to CSV</CSVLink>
-<br />
-<div>
-<EmailShareButton url=" ">
-        <EmailIcon />
-      </EmailShareButton>
-</div>
-      
+      </div>
     </div>
   );
 };
