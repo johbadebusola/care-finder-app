@@ -2,8 +2,9 @@
 .login {
   background-color: gainsboro;
   padding: 1px;
-
-  height: 80vh;
+ 
+  height: 100%;
+  /* height: 100vh; */
 }
 
 .login > .box1 {
@@ -14,6 +15,7 @@
   margin-top: 9em;
   justify-content: center;
   border: 2px solid var(--blue);
+  margin-bottom: 4em;
 }
 
 .login > .box1 > input {
@@ -79,6 +81,10 @@
   .login > .box1{
     width: 30%;
   }
+  .login {
+    height: 80vh;
+  }
+
 }
 
 /* https://softauthor.com/firebase-cloud-firestore-security-rules/#for-authenticated-users-only */
