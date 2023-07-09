@@ -8,12 +8,13 @@ import share from "../images/share.svg";
 import search from "../images/search.svg";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { useNavigate } from "react-router";
 
 
 
 const Home = () => {
   const [hospitalData, setHospitalData] = useState<any | null>(null);
-
+const navigate = useNavigate()
   const getHospitals = () => {
     const hospital = collection(db, "hospitalList");
     getDocs(hospital)
@@ -43,7 +44,7 @@ const Home = () => {
           <p>
             Discover Your Perfect Care: Find Your Hospital, Anytime, Anywhere!
           </p>
-          <button>Get Started </button>
+          <button onClick={() => navigate("/search")} >Get Started </button>
         </div>
 
         <div className="img">

@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto+Slab&display=swap");
+.Footer-cont {
+  padding: 1em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.Footer-cont > div > p {
+  font-size: large;
+}
+.Footer-cont > div > h4 {
+  color: grey;
+  font-family: "Roboto Slab", serif;
+}
+.Footer-cont > div > p span {
+  color: var(--blue);
+  font-family: "Carter One", cursive;
+}
+.Footer-cont > div > h3 {
+  color: var(--blue);
+  font-family: "Carter One", cursive;
+}
+.Footer-cont > div > p {
+  color: grey;
+  font-family: "Roboto Slab", serif;
+}
+
+.Footer-cont > div > p:hover {
+  text-decoration: underline;
+  color: var(--blue);
+}
+
+@media(min-width:1000px){
+    .Footer-cont{
+        display: flex;
+        /* grid-template-columns: repeat(3,1fr); */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .Footer-cont > div {
+        width: 30%;
+    }
+    .links{
+        margin-left: 12em;
+    }
+}

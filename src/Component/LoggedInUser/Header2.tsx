@@ -54,7 +54,7 @@ export const Header2 = () => {
 
   return (
     <div>
-      <div className=" header2-cont">
+      <div className="header2-cont">
         <p>
           Care<span> FINDER</span>
         </p>
@@ -109,7 +109,7 @@ export const Header2 = () => {
                 }}
                 to="/post"
               >
-                {" "}
+                {" "} 
                 Post
               </Link>{" "}
             </li>

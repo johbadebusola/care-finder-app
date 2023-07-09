@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap");
 .login {
-  margin-top: 4.1em;
   background-color: gainsboro;
   padding: 1px;
-  height: 100vh;
+
+  height: 80vh;
 }
 
 .login > .box1 {
-  /* background-color:tomato; */
-  width: 75%;
+  width: 79%;
   box-sizing: border-box;
   margin: auto;
   padding: 1em;
@@ -68,11 +67,18 @@
   font-weight: bold;
 }
 
-.error{
-    color: tomato;
-    text-align: center;
-    font-family: var(--Railway);
-    font-weight: bold;
+.error {
+  color: tomato;
+  text-align: center;
+  font-family: var(--Railway);
+  font-weight: bold;
+}
+
+
+@media(min-width:1000px){
+  .login > .box1{
+    width: 30%;
+  }
 }
 
 /* https://softauthor.com/firebase-cloud-firestore-security-rules/#for-authenticated-users-only */
