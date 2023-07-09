@@ -1,46 +1,13 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Access to healthcare in Nigeria can be very difficult and painstaking. Quite absurd being that the first thing to living is being healthy. Carefinder is a simple tool that aims to help any user find, export, and share hospitals within the region.**
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Hospital Search:**
+Carefinder allows users to search for hospitals within their region. Users can input their location or select from a list of nearby cities to find hospitals in their area. The platform will provide a list of hospitals and their respective contact details, including address, phone number, and email.
+- **Export Hospitals:**
+Carefinder allows users to export the list of hospitals to a CSV file, making it easy to save and share the information. T
+- **Share Hospitals:**
+Carefinder also allows users to share the Link to the CareFinder App with others. Users can share the information via email 
+- **User Authentication:**
+Carefinder requires admin users to create an account to access the platform's admin features. This feature will be implemented using Firebase's built-in authentication feature, which supports multiple authentication methods, including email/password and social media logins.
+- **Markdown Support:**
+Carefinder allows admin users to write content(create hospital entries and corresponding details) with markdown. This feature makes it easy for users to format their content, add links, and insert images. The platform will provide a simple text editor that supports markdown syntax
